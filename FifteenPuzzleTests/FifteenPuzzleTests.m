@@ -32,7 +32,8 @@
 // 2. if direction exists -> move game cell
 // 3. else -> nothing
 
-// Test List
+
+// Tests
 // 1. testEmptyPlaceInPuzzle.
 // 2. testCanMovePuzzleRow.
 // 3. testMovePuzzleRow
