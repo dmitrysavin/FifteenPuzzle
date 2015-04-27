@@ -23,6 +23,8 @@ static const NSInteger PuzzleTableSize = 4;
 
 @implementation PuzzleTable
 
+#pragma mark - Life cycle -
+
 - (instancetype)init
 {
     self = [super init];
@@ -32,31 +34,6 @@ static const NSInteger PuzzleTableSize = 4;
     _size = PuzzleTableSize;
     
     return self;
-}
-
-
-#pragma mark - Helpers -
-
-- (NSMutableArray *)configurePuzzleRows
-{
-    NSInteger puzzleLength = (PuzzleTableSize * PuzzleTableSize);
-    
-    NSMutableArray *rows = [NSMutableArray array];
-    
-    for (NSInteger index = 0; index < puzzleLength; index++) {
-        PuzzleRow *puzzleRow = [PuzzleRow new];
-        
-        if (index == puzzleLength - 1) {
-            puzzleRow.value = NSNotFound;
-            self.emptyPuzzleRow = puzzleRow;
-        } else {
-            puzzleRow.value = index;
-        }
-        
-        [rows addObject: puzzleRow];
-    }
-    
-    return rows;
 }
 
 
@@ -158,6 +135,28 @@ static const NSInteger PuzzleTableSize = 4;
     NSInteger toIndex = [self indexFromIndexPath: toIndexPath];
     
     [self.rows exchangeObjectAtIndex: fromIndex withObjectAtIndex: toIndex];
+}
+
+- (NSMutableArray *)configurePuzzleRows
+{
+    NSInteger puzzleLength = (PuzzleTableSize * PuzzleTableSize);
+    
+    NSMutableArray *rows = [NSMutableArray array];
+    
+    for (NSInteger index = 0; index < puzzleLength; index++) {
+        PuzzleRow *puzzleRow = [PuzzleRow new];
+        
+        if (index == puzzleLength - 1) {
+            puzzleRow.value = NSNotFound;
+            self.emptyPuzzleRow = puzzleRow;
+        } else {
+            puzzleRow.value = index;
+        }
+        
+        [rows addObject: puzzleRow];
+    }
+    
+    return rows;
 }
 
 @end
